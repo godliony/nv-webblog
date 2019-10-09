@@ -1,0 +1,23 @@
+{
+  "name": "nv-webblog-server",
+  "version": "1.0.0",
+  "description": "nodejs vuejs webblog server (back end)",
+  "main": "src/app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/godliony/nv-webblog.git"
+  },
+  "author": "Nuttavat Boonrod",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/godliony/nv-webblog/issues"
+  },
+  "homepage": "https://github.com/godliony/nv-webblog#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1"
+  }
+}
