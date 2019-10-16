@@ -1,5 +1,8 @@
 module.exports = {
   port: 8081,
+  authentication: {
+    jwtSecret: "TooMTaM"
+  },
   db: {
     database: process.env.DB_NAME || 'nvWebblogDb',
     user: process.env.DB_User || 'root',

@@ -59,10 +59,15 @@ module.exports = {
   //get user by id
   async show(req, res) {
     try {
-      const user = await User.findById(req.params.userId)
+      console.log(req.params.userId);
+      const user = await User.findOne({
+        where: {
+          id: req.params.userId
+        }
+      })
       res.send(user)
     } catch (err) {
-      req.status(500).send({
+      res.status(500).send({
         error: 'The user information was incorrect'
       })
     }
