@@ -6,6 +6,14 @@ import UserIndex from '@/components/Users/Index'
 import UserCreate from '@/components/Users/CreateUser'
 import UserEdit from '@/components/Users/EditUser'
 import UserShow from '@/components/Users/ShowUser'
+//comments
+import CommentIndex from '@/components/Comments/Index'
+
+// Blogs
+import BlogIndex from '@/components/Blogs/Index'
+import BlogCreate from '@/components/Blogs/CreateBlog'
+import BlogEdit from '@/components/Blogs/EditBlog'
+import BlogShow from '@/components/Blogs/ShowBlog'
 
 //Authen
 import Login from '@/components/Login'
@@ -39,6 +47,34 @@ export default new Router({
       path: '/login',
       name: 'login',
       component: Login
+    },
+    //blogs
+    {
+      path: '/blogs',
+      name: 'blogs',
+      component: BlogIndex
+    },
+    {
+      path: '/blog/create',
+      name: 'blogs-create',
+      component: BlogCreate
+    },
+    {
+      path: '/blog/edit/:blogId',
+      name: 'blogs-edit',
+      component: BlogEdit
+    },
+    {
+      path: '/blog/:blogId',
+      name: 'blog',
+      component: BlogShow
+    },
+
+    //Comments
+    {
+      path: '/comments',
+      name: 'comments',
+      component: CommentIndex
     }
   ]
 })
