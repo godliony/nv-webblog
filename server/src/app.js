@@ -8,7 +8,7 @@ const config = require('./config/config')
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(cors())
-
+require('./userPassport')
 require('./routes')(app)
 
 let port = process.env.PORT || config.port

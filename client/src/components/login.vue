@@ -5,6 +5,7 @@
       <p>Username: <input type="text" v-model="email" /></p>
       <p>Password: <input type="text" v-model="password" /></p>
       <p><button type="submit">Login</button></p>
+      <div class="error" v-if="error">{{ error }}</div>
     </form>
   </div>
 </template>
@@ -15,19 +16,26 @@ export default {
   data() {
     return {
       email: "",
-      password: ""
+      password: "",
+      error: null
     };
   },
   methods: {
     async onLogin() {
       try {
-        const reponse = await AuthenService.login({
+        const response = await AuthenService.login({
           email: this.email,
           password: this.password
         });
-        console.log(response);
+        this.$store.dispatch("setToken", response.data.token);
+        this.$store.dispatch("setUser", response.data.user);
+        this.$router.push({
+          name: "users"
+        });
       } catch (err) {
         console.log(err);
+        this.error = err.response.data.error;
+        (this.email = ""), (this.password = "");
       }
     }
   }
@@ -35,4 +43,7 @@ export default {
 </script>
 
 <style>
+.error {
+  color: red;
+}
 </style>
