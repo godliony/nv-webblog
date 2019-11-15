@@ -15,8 +15,11 @@ import BlogCreate from '@/components/Blogs/CreateBlog'
 import BlogEdit from '@/components/Blogs/EditBlog'
 import BlogShow from '@/components/Blogs/ShowBlog'
 
+import Upload from '@/components/Utils/Upload'
+
 //Authen
 import Login from '@/components/Login'
+
 
 Vue.use(Router)
 
@@ -75,6 +78,12 @@ export default new Router({
       path: '/comments',
       name: 'comments',
       component: CommentIndex
-    }
+    },
+    //
+    {
+      path: '/upload',
+      name: 'upload',
+      component: Upload
+    },
   ]
 })

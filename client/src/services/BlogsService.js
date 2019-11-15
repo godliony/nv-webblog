@@ -1,7 +1,11 @@
 import Api from './Api'
 export default {
-  index() {
-    return Api().get('blogs')
+  index(search) {
+    return Api().get('blogs', {
+      params: {
+        search: search
+      }
+    })
   },
   show(blogId) {
     return Api().get(`blog/${blogId}`)
@@ -13,6 +17,7 @@ export default {
     return Api().put(`blog/${blog.id}`, blog)
   },
   delete(blog) {
+    //console.log(JSON.stringify(blog))
     return Api().delete(`blog/${blog.id}`, blog)
   }
 }

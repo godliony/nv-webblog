@@ -1,9 +1,31 @@
-const { Blog } = require('../models')
+const { Blog, Sequelize } = require('../models')
+const Op = Sequelize.Op
 module.exports = {
   //get all blog
   async index(req, res) {
     try {
-      const blogs = await Blog.findAll()
+      let blogs = null
+      const search = req.query.search
+
+      if (search) {
+        blogs = await Blog.findAll({
+          where: {
+            [Op.or]: [
+              'title', 'content', 'category'
+            ].map(key => ({
+              [key]: {
+                [Op.like]: `%${search}%`
+              }
+            }))
+          },
+          order: [['updatedAt', 'DESC']]
+        })
+      } else {
+        blogs = await Blog.findAll({
+          order: [['updatedAt', 'DESC']]
+        })
+
+      }
       res.send(blogs)
     } catch (err) {
       res.status(500).send({
@@ -41,15 +63,21 @@ module.exports = {
   //delete blog
   async remove(req, res) {
     try {
+      console.log(req.params)
       const blog = await Blog.findOne({
-        id: req.params.blogId
+        where: {
+          id: req.params.blogId
+        }
       })
       if (!blog) {
         return res.status(403).send({
           error: 'The blog information was incorrent'
         })
       }
+
+      //console.log(blog.id)
       await blog.destroy()
+
       res.send(blog)
     } catch (err) {
       req.status(500).send({
